@@ -399,36 +399,41 @@ Thank you for visiting and taking the time to see the world through my eyes.</p>
     }
 
 const slideshowImages = [
-      "https://github.com/Samyuktha-06/Arsoliss/releases/download/arsolis-artwork/welcome.jpg",
-      "https://github.com/Samyuktha-06/Arsoliss/releases/download/arsolis-artwork/pencil1.jpg",
-      "https://github.com/Samyuktha-06/Arsoliss/releases/download/arsolis-artwork/watercolor1.jpg",
-      "https://github.com/Samyuktha-06/Arsoliss/releases/download/arsolis-artwork/pencil6.jpg",
-      "https://github.com/Samyuktha-06/Arsoliss/releases/download/arsolis-artwork/acrylic6.jpg"
-    ];
-    const slideshowLinks = ["#pencil","#pencil", "#watercolor","#pencil", "#acrylic"];
-    const slideshowTitles = ["Welcome!!","Pencil Sketch", "Watercolor Painting","Pencil Sketch", "Acrylic Painting"];
-    let currentIndex = 0;
-    const slideshowImg = document.getElementById("slideshow-image");
-    const slideshowCaption = document.getElementById("slide-caption");
-    const slideshowDiv = document.querySelector(".slideshow");
+  "https://github.com/Samyuktha-06/Arsoliss/releases/download/arsolis-artwork/welcome.jpg",
+  "https://github.com/Samyuktha-06/Arsoliss/releases/download/arsolis-artwork/pencil1.jpg",
+  "https://github.com/Samyuktha-06/Arsoliss/releases/download/arsolis-artwork/watercolor1.jpg",
+  "https://github.com/Samyuktha-06/Arsoliss/releases/download/arsolis-artwork/pencil6.jpg",
+  "https://github.com/Samyuktha-06/Arsoliss/releases/download/arsolis-artwork/acrylic6.jpg"
+];
+const slideshowLinks = ["#pencil", "#pencil", "#watercolor", "#pencil", "#acrylic"];
+const slideshowTitles = ["Welcome!!", "Pencil Sketch", "Watercolor Painting", "Pencil Sketch", "Acrylic Painting"];
+let currentIndex = 0;
 
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % slideshowImages.length;
-      slideshowImg.style.opacity = 0;
-      setTimeout(() => {
-        slideshowImg.src = slideshowImages[currentIndex];
-        slideshowCaption.textContent = slideshowTitles[currentIndex];
-        slideshowDiv.onclick = () => location.href = slideshowLinks[currentIndex];
-        slideshowImg.style.opacity = 1;
-      }, 500);
-    }, 3000);
-    slideshowImg.style.opacity = 0;
-setTimeout(() => {
-  slideshowImg.src = slideshowImages[currentIndex];
-  slideshowCaption.textContent = slideshowTitles[currentIndex];
-  slideshowDiv.onclick = () => location.href = slideshowLinks[currentIndex];
-  slideshowImg.style.opacity = 1;
-}, 500);
+const slideshowImg = document.getElementById("slideshow-image");
+const slideshowCaption = document.getElementById("slide-caption");
+const slideshowDiv = document.querySelector(".slideshow");
+
+function updateSlideshow() {
+  slideshowImg.style.opacity = 0;
+  slideshowCaption.style.opacity = 0;
+
+  currentIndex = (currentIndex + 1) % slideshowImages.length;
+
+  const nextImage = new Image();
+  nextImage.src = slideshowImages[currentIndex];
+  nextImage.onload = () => {
+    slideshowImg.src = nextImage.src;
+    slideshowCaption.textContent = slideshowTitles[currentIndex];
+    slideshowDiv.onclick = () => location.href = slideshowLinks[currentIndex];
+
+    slideshowImg.style.opacity = 1;
+    slideshowCaption.style.opacity = 1;
+  };
+}
+
+setInterval(updateSlideshow, 3000);
+
+
 
       document.querySelectorAll('.art-section img').forEach(img => {
       img.addEventListener('click', () => {

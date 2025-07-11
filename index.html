@@ -240,7 +240,7 @@
 <body>
   <header>
     <div class="logo-container">
-      <img src=""https://github.com/Samyuktha-06/Arsoliss/releases/download/arsolis-artwork/logo.png" alt="Logo">
+      <img src="https://github.com/Samyuktha-06/Arsoliss/releases/download/arsolis-artwork/logo.png" alt="Logo">
       <span style="font-family: 'Bebas Neue', sans-serif; font-size: 28px;">
   <b>ARSOLIS</b>
 </span>
@@ -422,6 +422,14 @@ const slideshowImages = [
         slideshowImg.style.opacity = 1;
       }, 500);
     }, 3000);
+    slideshowImg.style.opacity = 0;
+setTimeout(() => {
+  slideshowImg.src = slideshowImages[currentIndex];
+  slideshowCaption.textContent = slideshowTitles[currentIndex];
+  slideshowDiv.onclick = () => location.href = slideshowLinks[currentIndex];
+  slideshowImg.style.opacity = 1;
+}, 500);
+
       document.querySelectorAll('.art-section img').forEach(img => {
       img.addEventListener('click', () => {
         const modal = document.getElementById('modal');
